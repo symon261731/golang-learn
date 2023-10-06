@@ -3,9 +3,20 @@ package main
 import "fmt"
 
 func main() {
-	var inNum int
 
-	fmt.Scan(&inNum)
+	var i int
 
-	fmt.Println("It is", inNum/30, "hours", 2*(inNum%30), "minutes")
+	fmt.Scan(&i)
+
+	var sum int = 0
+
+	for k := 1; k <= i; k++ {
+		var scanVal int
+		fmt.Scan(&scanVal)
+		if scanVal >= 10 && scanVal < 100 && scanVal%8 == 0 {
+			sum += scanVal
+		}
+	}
+
+	fmt.Println(sum)
 }
