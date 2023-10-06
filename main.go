@@ -4,19 +4,19 @@ import "fmt"
 
 func main() {
 
-	var i int
+	var n int
+	var maxVal int = 0
+	var acc int = 0
 
-	fmt.Scan(&i)
-
-	var sum int = 0
-
-	for k := 1; k <= i; k++ {
-		var scanVal int
-		fmt.Scan(&scanVal)
-		if scanVal >= 10 && scanVal < 100 && scanVal%8 == 0 {
-			sum += scanVal
+	// считываем числа пока не будет введен 0
+	for fmt.Scan(&n); n != 0; fmt.Scan(&n) {
+		if n > maxVal {
+			maxVal = n
+			acc = 1
+		} else if n == maxVal {
+			acc += 1
 		}
 	}
 
-	fmt.Println(sum)
+	fmt.Println(acc)
 }
