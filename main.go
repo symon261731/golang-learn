@@ -3,20 +3,27 @@ package main
 import "fmt"
 
 func main() {
+	var (
+		n   int
+		c   int
+		d   int
+		res int
+	)
 
-	var n int
-	var maxVal int = 0
-	var acc int = 0
+	fmt.Scan(&n)
+	fmt.Scan(&c)
+	fmt.Scan(&d)
 
-	// считываем числа пока не будет введен 0
-	for fmt.Scan(&n); n != 0; fmt.Scan(&n) {
-		if n > maxVal {
-			maxVal = n
-			acc = 1
-		} else if n == maxVal {
-			acc += 1
+	for i := 1; i <= n; i += 1 {
+		if i%c == 0 && i%d != 0 {
+			res = i
+			break
 		}
+
 	}
 
-	fmt.Println(acc)
+	if res != 0 {
+		fmt.Println(res)
+	}
+
 }
