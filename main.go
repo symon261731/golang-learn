@@ -4,26 +4,24 @@ import "fmt"
 
 func main() {
 	var (
-		n   int
-		c   int
-		d   int
-		res int
+		x int
+		p int
+		y int
 	)
 
-	fmt.Scan(&n)
-	fmt.Scan(&c)
-	fmt.Scan(&d)
+	fmt.Scan(&x)
+	fmt.Scan(&p)
+	fmt.Scan(&y)
 
-	for i := 1; i <= n; i += 1 {
-		if i%c == 0 && i%d != 0 {
-			res = i
+	var thisYearMOney = x
+
+	for year := 1; ; year += 1 {
+		if thisYearMOney+thisYearMOney*p/100 >= y {
+
+			fmt.Println(year)
 			break
+		} else {
+			thisYearMOney = thisYearMOney + thisYearMOney*p/100
 		}
-
 	}
-
-	if res != 0 {
-		fmt.Println(res)
-	}
-
 }
