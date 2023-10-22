@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
+	WorkWithFileSystem()
+}
+
+func WorkWithFileSystem() {
 	var nameOfFiles []string
 
 	dir, err := os.Open("../forLearn")
@@ -26,4 +30,5 @@ func main() {
 	}
 
 	fmt.Println(nameOfFiles)
+	fmt.Println(len(nameOfFiles))
 }
