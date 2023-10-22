@@ -1,27 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	var (
-		x int
-		p int
-		y int
-	)
+	var nameOfFiles []string
 
-	fmt.Scan(&x)
-	fmt.Scan(&p)
-	fmt.Scan(&y)
-
-	var thisYearMOney = x
-
-	for year := 1; ; year += 1 {
-		if thisYearMOney+thisYearMOney*p/100 >= y {
-
-			fmt.Println(year)
-			break
-		} else {
-			thisYearMOney = thisYearMOney + thisYearMOney*p/100
-		}
+	dir, err := os.Open("../forLearn")
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+	defer dir.Close()
+
+	files, err := dir.Readdir(-1)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	for _, file := range files {
+		nameOfFiles = append(nameOfFiles, file.Name())
+	}
+
+	fmt.Println(nameOfFiles)
 }
