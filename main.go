@@ -1,34 +1,27 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
 
 func main() {
-	WorkWithFileSystem()
+	Example()
 }
 
-func WorkWithFileSystem() {
-	var nameOfFiles []string
+func Example() {
+	cipherCaesar := "L fdph, L vdz, L frqtxhuhg."
 
-	dir, err := os.Open("../forLearn")
-	if err != nil {
-		fmt.Println(err)
-		return
+	for i := 0; i < len(cipherCaesar); i += 1 {
+		letter := cipherCaesar[i]
+		if letter > 'a' && letter < 'z' {
+			letter = letter - 3
+			if letter < 'a' {
+				letter += 26
+			}
+		} else if letter > 'A' && letter <= 'Z' {
+			letter = letter - 3
+			if letter < 'A' {
+				letter = letter + 26
+			}
+		}
+		fmt.Printf("%c", letter)
 	}
-	defer dir.Close()
-
-	files, err := dir.Readdir(-1)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	for _, file := range files {
-		nameOfFiles = append(nameOfFiles, file.Name())
-	}
-
-	fmt.Println(nameOfFiles)
-	fmt.Println(len(nameOfFiles))
 }
