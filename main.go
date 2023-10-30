@@ -7,7 +7,25 @@ import (
 )
 
 func main() {
-	LuckyTicket()
+	//CalcMoneyWithoutChange()
+	CalcGroupsOfStudents()
+}
+
+func CalcGroupsOfStudents() {
+	var n, k, studentIndex int
+
+	fmt.Println("Введите пожалуйста сколько студентов, групп, порядковый номер студента: ")
+	fmt.Scan(&n, &k, &studentIndex)
+
+	studentsInOneGroup := n / k
+
+	for i := 1; i <= k; i++ {
+		if studentIndex <= studentsInOneGroup*i {
+			fmt.Printf("студент находиться в %d группе", i)
+		}
+	}
+
+	return
 }
 
 func CalcCoordinateArea() {
@@ -76,6 +94,30 @@ func DetectMatchingNumbers() {
 	} else {
 		fmt.Println("Все числа уникальны")
 	}
+}
+
+func CalcMoneyWithoutChange() {
+	var currencyFirst, currencySecond, currencyThird, totalMoney int
+
+	fmt.Print("Введите значение трех валют: ")
+	fmt.Scan(&currencyFirst, &currencySecond, &currencyThird)
+	fmt.Println("Введите сумму: ")
+	fmt.Scan(&totalMoney)
+
+	if currencyFirst == totalMoney || currencySecond == totalMoney || currencyThird == totalMoney {
+		fmt.Println("выдаст одной купюрой")
+		return
+	}
+	if currencyFirst+currencySecond == totalMoney || currencyFirst+currencyThird == totalMoney || currencySecond+currencyThird == totalMoney {
+		fmt.Println("выдаст двумя купюрами")
+		return
+	}
+	if currencyFirst+currencySecond+currencyThird == totalMoney {
+		fmt.Println("выдаст тремя купюрами")
+		return
+	}
+	fmt.Println("не выдаст без сдачи")
+	return
 }
 
 func LuckyTicket() {
