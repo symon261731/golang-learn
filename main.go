@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"time"
 )
 
 func main() {
-	//CalcMoneyWithoutChange()
-	CalcGroupsOfStudents()
+	RandomGame()
 }
 
 func CalcGroupsOfStudents() {
@@ -170,30 +170,42 @@ func CalcQuadraticEquation() {
 
 func RandomGame() {
 
-	for try := 1; try <= 4; try += 1 {
-		randomNumber := rand.Intn(10)
+	rand.Seed(time.Now().Unix())
 
-		fmt.Printf("ваше число %d верно? ", randomNumber)
+	var number int
+	fmt.Print("загадай число число: ")
+	fmt.Scanln(&number)
 
-		var answer string
-		fmt.Scan(&answer)
+	trying := 0
 
-		if answer == "да" || answer == "нет" {
-			if answer == "да" {
-				fmt.Printf("число %d угадано", randomNumber)
-				break
-			} else {
-				continue
-			}
+	random := rand.Intn(10) + 1
 
-		} else {
-			fmt.Println("более коректный ответ пожалуйста да нет")
-			return
+	for {
+
+		trying++
+
+		if trying == 5 {
+			break
+		}
+
+		fmt.Printf("попытка №%d \n", trying)
+		fmt.Printf("число %d \n", random)
+
+		if random == number {
+			fmt.Printf("угадал число %d на %d попытке\n", random, trying)
+			break
+		} else if random < number {
+			//a + rand.Intn(b-a+1)
+			random = random + rand.Intn(10-random+1)
+			continue
+		} else if random > number {
+			random = rand.Intn(random)
+			continue
 		}
 
 	}
-
 	fmt.Println("попытки окончены")
+
 }
 
 //func ExamResult() {
