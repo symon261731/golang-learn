@@ -7,9 +7,126 @@ import (
 )
 
 func main() {
-	CalcGroupsOfStudents()
+	FillingBuskets()
 }
 
+func EasyCycle() {
+	var num int
+
+	fmt.Print("Введите число: ")
+	fmt.Scan(&num)
+
+	for i := 0; i <= num; i++ {
+		fmt.Printf("%d ", i)
+	}
+}
+
+func SumOfTwoNumberByOne() {
+	var firstNumber, secondNumber int
+
+	fmt.Print("Введите первое число: ")
+	fmt.Scan(&firstNumber)
+	fmt.Print("Введите второе число: ")
+	fmt.Scan(&secondNumber)
+
+	var sum int = firstNumber
+
+	for i := firstNumber; i <= firstNumber+secondNumber; i++ {
+		sum += 1
+	}
+
+	fmt.Print(sum)
+}
+
+func CalcDiscaunt() {
+	var price, discount int
+
+	fmt.Print("Введите цену товара: ")
+	fmt.Scan(&price)
+	fmt.Print("Введите значение скидки: ")
+	fmt.Scan(&discount)
+
+	if discount > 30 {
+		fmt.Print("Скидка не более 30%")
+		return
+	}
+
+	result := price / discount
+
+	if result > 2000 {
+		fmt.Print("Слишком большая скидка")
+		return
+	}
+
+	fmt.Print(result)
+}
+
+func TenHundreadThousand() {
+	a := 0
+	b := 0
+	c := 0
+
+	for {
+		if a != 10 {
+			a += 1
+		}
+		if b != 100 {
+			b += 1
+		}
+		if c != 1000 {
+			c += 1
+		}
+
+		if a == 10 && b == 100 && c == 1000 {
+			break
+		}
+	}
+
+	fmt.Print(a, b, c)
+}
+
+func FillingBuskets() {
+	var firstBusket, secondBusket, thirdBusket int
+
+	fmt.Print("Вместимость первого ведра: ")
+	fmt.Scan(&firstBusket)
+	fmt.Print("Вместимость второго ведра: ")
+	fmt.Scan(&secondBusket)
+	fmt.Print("Вместимость третьего ведра: ")
+	fmt.Scan(&thirdBusket)
+
+	if firstBusket == 0 || secondBusket == 0 || thirdBusket == 0 {
+		fmt.Print("Вместимость каждого ведра должна быть больше нуля")
+		return
+	}
+
+	var applesInFirstBucket = 0
+	var applesInSecondBucket = 0
+	var applesInThirdBucket = 0
+
+	for {
+
+		if applesInFirstBucket != firstBusket {
+			applesInFirstBucket += 1
+			continue
+		}
+		if applesInSecondBucket != secondBusket {
+			applesInSecondBucket += 1
+			continue
+		}
+		if applesInThirdBucket != thirdBusket {
+			applesInThirdBucket += 1
+			continue
+		}
+
+		if firstBusket == applesInFirstBucket && secondBusket == applesInSecondBucket && thirdBusket == applesInThirdBucket {
+			break
+		}
+	}
+
+	fmt.Print(applesInFirstBucket, applesInSecondBucket, applesInThirdBucket)
+
+}
 
 func CalcGroupsOfStudents() {
 	var n, k, studentIndex int
@@ -32,90 +149,6 @@ func CalcGroupsOfStudents() {
 	return
 }
 
-func CalcMoneyWithoutChange() {
-	
-	var totalMoney, currencyFirst, currencySecond, currencyThird int 
-	var minVal, midVal, maxVal,
-		count1, count2, count3 int
-
-	fmt.Print("Введите стоимость товара: ")
-	fmt.Scan(&totalMoney)
-	fmt.Print("Введите значение трех валют: ")
-	fmt.Scan(&currencyFirst, &currencySecond, &currencyThird)
-
-	if currencyFirst < currencySecond && currencyFirst < currencyThird {
-		minVal = currencyFirst
-		if currencySecond < currencyThird {
-			midVal = currencySecond
-			maxVal = currencyThird
-		} else {
-			midVal = currencyThird
-			maxVal = currencySecond
-		}
-	}
-	if currencySecond < currencyFirst && currencySecond < currencyThird {
-		minVal = currencySecond
-		if currencyFirst < currencyThird {
-			midVal = currencyFirst
-			maxVal = currencyThird
-		} else {
-			midVal = currencyThird
-			maxVal = currencyFirst
-		}
-	}
-	if currencyThird < currencyFirst && currencyThird < currencySecond {
-		minVal = currencyThird
-		if currencyFirst < currencySecond {
-			midVal = currencyFirst
-			maxVal = currencySecond
-		} else {
-			midVal = currencySecond
-			maxVal = currencyFirst
-		}
-	}
-
-	flag := false
-	//количество монет с наибольшей купюрой
-	count3 = totalMoney / maxVal
-	for {
-		// если остаток от наибольшей купюры = 0 то прервать цикл
-		if totalMoney%maxVal == 0 {
-			break
-		}
-		count2 = (totalMoney - count3*maxVal) / midVal
-		for {
-			if (totalMoney-count3*maxVal)%midVal == 0 {
-				flag = true
-				break
-			}
-			if (totalMoney-count3*maxVal-count2*midVal)%minVal == 0 {
-				count1 = (totalMoney - count3*maxVal - count2*midVal) / minVal
-				flag = true
-				break
-			}
-			if count2 != 0 {
-				count2--
-				continue
-			}
-			if count3 != 0 {
-				count3--
-				break
-			}
-			fmt.Println("\nНе получается оплатить без сдачи имеющимися монетами")
-			return
-		}
-		if flag {
-			break
-		}
-	}
-
-	fmt.Println("\nДля оплаты необходимо:\n",
-		count3, "монет номиналом", maxVal, "руб. и\n",
-		count2, "монет номиналом", midVal, "руб. и\n",
-		count1, "монет номиналом", minVal, "руб.")
-
-}
-
 func RandomGame() {
 
 	rand.Seed(time.Now().Unix())
@@ -130,7 +163,6 @@ func RandomGame() {
 
 	for {
 		trying++
-
 		if trying == 5 {
 			break
 		}
