@@ -7,35 +7,7 @@ import (
 )
 
 func main() {
-	Lift()
-}
-
-func EasyCycle() {
-	var num int
-
-	fmt.Print("Введите число: ")
-	fmt.Scan(&num)
-
-	for i := 0; i <= num; i++ {
-		fmt.Printf("%d ", i)
-	}
-}
-
-func SumOfTwoNumberByOne() {
-	var firstNumber, secondNumber int
-
-	fmt.Print("Введите первое число: ")
-	fmt.Scan(&firstNumber)
-	fmt.Print("Введите второе число: ")
-	fmt.Scan(&secondNumber)
-
-	var sum int = firstNumber
-
-	for i := firstNumber; i <= firstNumber+secondNumber; i++ {
-		sum += 1
-	}
-
-	fmt.Print(sum)
+	FillingBuskets()
 }
 
 func CalcDiscaunt() {
@@ -51,7 +23,7 @@ func CalcDiscaunt() {
 		return
 	}
 
-	result := price / discount
+	result := (price / 100) * discount
 
 	if result > 2000 {
 		fmt.Print("Слишком большая скидка")
@@ -61,32 +33,8 @@ func CalcDiscaunt() {
 	fmt.Print(result)
 }
 
-func TenHundreadThousand() {
-	a := 0
-	b := 0
-	c := 0
-
-	for {
-		if a != 10 {
-			a += 1
-		}
-		if b != 100 {
-			b += 1
-		}
-		if c != 1000 {
-			c += 1
-		}
-
-		if a == 10 && b == 100 && c == 1000 {
-			break
-		}
-	}
-
-	fmt.Print(a, b, c)
-}
-
 func FillingBuskets() {
-	var firstBusket, secondBusket, thirdBusket int
+	var firstBusket, secondBusket, thirdBusket uint
 
 	fmt.Print("Вместимость первого ведра: ")
 	fmt.Scan(&firstBusket)
@@ -100,23 +48,20 @@ func FillingBuskets() {
 		return
 	}
 
-	var applesInFirstBucket = 0
-	var applesInSecondBucket = 0
-	var applesInThirdBucket = 0
+	var applesInFirstBucket uint = 0
+	var applesInSecondBucket uint = 0
+	var applesInThirdBucket uint = 0
 
 	for {
-
+		fmt.Println(applesInFirstBucket, applesInSecondBucket, applesInThirdBucket)
 		if applesInFirstBucket != firstBusket {
 			applesInFirstBucket += 1
-			continue
 		}
 		if applesInSecondBucket != secondBusket {
 			applesInSecondBucket += 1
-			continue
 		}
 		if applesInThirdBucket != thirdBusket {
 			applesInThirdBucket += 1
-			continue
 		}
 
 		if firstBusket == applesInFirstBucket && secondBusket == applesInSecondBucket && thirdBusket == applesInThirdBucket {
@@ -195,13 +140,13 @@ func Lift() {
 
 		}
 
-		if numberOfFloor == 1 && totalPassengersOnFirstFloor != 3 && direction == "down" {
+		if numberOfFloor == 1 {
 			totalPassengersOnFirstFloor += numberOfPassengers
 			numberOfPassengers = 0
 			direction = "up"
 		}
 
-		if numberOfFloor == 1 && totalPassengersOnFirstFloor == 3 {
+		if totalPassengersOnFirstFloor == 3 {
 			break
 		}
 	}

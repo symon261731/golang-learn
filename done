@@ -1,3 +1,57 @@
+func EasyCycle() {
+	var num int
+
+	fmt.Print("Введите число: ")
+	fmt.Scan(&num)
+
+	for i := 0; i <= num; i++ {
+		fmt.Printf("%d ", i)
+	}
+}
+
+func SumOfTwoNumberByOne() {
+	var firstNumber, secondNumber int
+
+	fmt.Print("Введите первое число: ")
+	fmt.Scan(&firstNumber)
+	fmt.Print("Введите второе число: ")
+	fmt.Scan(&secondNumber)
+
+	var sum int = firstNumber
+
+	for i := firstNumber; i <= firstNumber+secondNumber; i++ {
+		sum += 1
+	}
+
+	fmt.Print(sum)
+}
+
+
+func TenHundreadThousand() {
+	a := 0
+	b := 0
+	c := 0
+
+	for {
+		if a != 10 {
+			a += 1
+		}
+		if b != 100 {
+			b += 1
+		}
+		if c != 1000 {
+			c += 1
+		}
+
+		if a == 10 && b == 100 && c == 1000 {
+			break
+		}
+	}
+
+	fmt.Print(a, b, c)
+}
+
+
 func CalcMoneyWithoutChange() {
 	
 	var totalMoney, currencyFirst, currencySecond, currencyThird int 
