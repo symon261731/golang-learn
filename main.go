@@ -3,11 +3,80 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
 
 func main() {
-	FillingBuskets()
+	ShowWeek()
+}
+
+func IdentifyTimeOfSeazon() {
+	var month string
+
+	months := map[string]int{
+		"январь":   1,
+		"февраль":  2,
+		"март":     3,
+		"апрель":   4,
+		"май":      5,
+		"июнь":     6,
+		"июль":     7,
+		"август":   8,
+		"сентябрь": 9,
+		"октябрь":  10,
+		"ноябрь":   11,
+		"декабрь":  12,
+	}
+
+	fmt.Print("Введите месяц: ")
+	fmt.Scan(&month)
+
+	resultOfInput := months[strings.ToLower(month)]
+
+	if resultOfInput == 0 {
+		fmt.Println("Неверный формат данных")
+		return
+	}
+
+	if resultOfInput == 12 || resultOfInput == 1 || resultOfInput == 2 {
+		fmt.Println("Зима")
+		return
+	} else if resultOfInput >= 3 && resultOfInput <= 5 {
+		fmt.Println("Весна")
+		return
+	} else if resultOfInput >= 6 && resultOfInput <= 8 {
+		fmt.Println("Лето")
+		return
+	} else if resultOfInput >= 9 && resultOfInput <= 11 {
+		fmt.Println("Осень")
+		return
+	}
+}
+
+func ShowWeek() {
+
+	var input string
+
+	weekDays := map[string]string{
+		"пн": "понедельник вторник среда четверг пятница",
+		"вт": "вторник среда четверг пятница",
+		"ср": "среда четверг пятница",
+		"чт": "четверг пятница",
+		"пт": "пятница",
+	}
+
+	fmt.Print("Введите пожалуйста день недели в сокращенной форме: ")
+	fmt.Scan(&input)
+
+	var resultOfInput = strings.ToLower(input)
+
+	if resultOfInput != "пн" && resultOfInput != "вт" && resultOfInput != "ср" && resultOfInput != "чт" && resultOfInput != "пт" {
+		fmt.Println("Неверный формат данных")
+		return
+	}
+
+	fmt.Println(weekDays[strings.ToLower(input)])
 }
 
 func CalcDiscaunt() {
