@@ -8,7 +8,48 @@ import (
 )
 
 func main() {
-	ShowWeek()
+	// array := []int{5, 5, 5, 10}
+	// array := []int{10, 10}
+	// array := []int{20, 5, 5, 5}
+	array := []int{5, 5, 10, 10, 20}
+	CalcMoney(array)
+}
+
+func CalcMoney(input []int) {
+	sum := 0
+
+	for _, value := range input {
+		if value == 5 {
+			sum += value
+		}
+		if value == 10 {
+			sum -= 5
+			if sum < 0 {
+				fmt.Print(false)
+				return
+			}
+			sum += 5
+		}
+		if value == 15 {
+			sum -= 10
+			if sum < 0 {
+				fmt.Print(false)
+				return
+			}
+			sum += 5
+		}
+		if value == 20 {
+			sum -= 15
+			if sum < 0 {
+				fmt.Print(false)
+				return
+			}
+			sum += 5
+		}
+
+	}
+
+	fmt.Print(true)
 }
 
 func IdentifyTimeOfSeazon() {
