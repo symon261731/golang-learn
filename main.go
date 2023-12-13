@@ -19,26 +19,18 @@ func CalcMoney(input []int) {
 	sum := 0
 
 	for _, value := range input {
-		if value == 5 {
+
+		switch value {
+		case 5:
 			sum += value
-		}
-		if value == 10 {
+		case 10:
 			sum -= 5
 			if sum < 0 {
 				fmt.Print(false)
 				return
 			}
 			sum += 5
-		}
-		if value == 15 {
-			sum -= 10
-			if sum < 0 {
-				fmt.Print(false)
-				return
-			}
-			sum += 5
-		}
-		if value == 20 {
+		case 20:
 			sum -= 15
 			if sum < 0 {
 				fmt.Print(false)
@@ -80,19 +72,34 @@ func IdentifyTimeOfSeazon() {
 		return
 	}
 
-	if resultOfInput == 12 || resultOfInput == 1 || resultOfInput == 2 {
+	switch resultOfInput {
+
+	case 1:
 		fmt.Println("Зима")
-		return
-	} else if resultOfInput >= 3 && resultOfInput <= 5 {
+	case 2:
+		fmt.Println("Зима")
+	case 3:
 		fmt.Println("Весна")
-		return
-	} else if resultOfInput >= 6 && resultOfInput <= 8 {
+	case 4:
+		fmt.Println("Весна")
+	case 5:
+		fmt.Println("Весна")
+	case 6:
 		fmt.Println("Лето")
-		return
-	} else if resultOfInput >= 9 && resultOfInput <= 11 {
+	case 7:
+		fmt.Println("Лето")
+	case 8:
+		fmt.Println("Лето")
+	case 9:
 		fmt.Println("Осень")
-		return
+	case 10:
+		fmt.Println("Осень")
+	case 11:
+		fmt.Println("Осень")
+	case 12:
+		fmt.Println("Зима")
 	}
+
 }
 
 func ShowWeek() {
