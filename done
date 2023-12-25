@@ -1,3 +1,104 @@
+func RandomGame() {
+
+	rand.Seed(time.Now().Unix())
+
+	var number int
+	fmt.Print("загадай число число: ")
+	fmt.Scanln(&number)
+
+	trying := 0
+
+	random := rand.Intn(10) + 1
+
+	for {
+		trying++
+		if trying == 5 {
+			break
+		}
+
+		fmt.Printf("попытка №%d \n", trying)
+		fmt.Printf("число %d \n", random)
+
+		if random == number {
+			fmt.Printf("угадал число %d на %d попытке\n", random, trying)
+			break
+		} else if random < number {
+			random = random + rand.Intn(10-random+1)
+			continue
+		} else if random > number {
+			random = rand.Intn(random)
+			continue
+		}
+
+	}
+	fmt.Println("попытки окончены")
+
+}
+
+
+func FillingBuskets() {
+	var firstBusket, secondBusket, thirdBusket uint
+
+	fmt.Print("Вместимость первого ведра: ")
+	fmt.Scan(&firstBusket)
+	fmt.Print("Вместимость второго ведра: ")
+	fmt.Scan(&secondBusket)
+	fmt.Print("Вместимость третьего ведра: ")
+	fmt.Scan(&thirdBusket)
+
+	if firstBusket == 0 || secondBusket == 0 || thirdBusket == 0 {
+		fmt.Print("Вместимость каждого ведра должна быть больше нуля")
+		return
+	}
+
+	var applesInFirstBucket uint = 0
+	var applesInSecondBucket uint = 0
+	var applesInThirdBucket uint = 0
+
+	for {
+		fmt.Println(applesInFirstBucket, applesInSecondBucket, applesInThirdBucket)
+		if applesInFirstBucket != firstBusket {
+			applesInFirstBucket += 1
+		}
+		if applesInSecondBucket != secondBusket {
+			applesInSecondBucket += 1
+		}
+		if applesInThirdBucket != thirdBusket {
+			applesInThirdBucket += 1
+		}
+
+		if firstBusket == applesInFirstBucket && secondBusket == applesInSecondBucket && thirdBusket == applesInThirdBucket {
+			break
+		}
+	}
+
+	fmt.Print(applesInFirstBucket, applesInSecondBucket, applesInThirdBucket)
+
+}
+
+func CalcDiscaunt() {
+	var price, discount int
+
+	fmt.Print("Введите цену товара: ")
+	fmt.Scan(&price)
+	fmt.Print("Введите значение скидки: ")
+	fmt.Scan(&discount)
+
+	if discount > 30 {
+		fmt.Print("Скидка не более 30%")
+		return
+	}
+
+	result := (price / 100) * discount
+
+	if result > 2000 {
+		fmt.Print("Слишком большая скидка")
+		return
+	}
+
+	fmt.Print(result)
+}
+
 func EasyCycle() {
 	var num int
 
