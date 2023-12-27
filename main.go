@@ -6,9 +6,33 @@ import (
 )
 
 func main() {
-	var arr = []int{5, 5, 10, 10}
-	CalcMoney(arr)
+	// var arr = []int{5, 5, 10, 10}
+	// CalcMoney(arr)
+	NumberOfWordsInUpperCase()
 }
+
+func NumberOfWordsInUpperCase() {
+	exampleString := "Go is an Open source programming Language that makes it Easy to build simple, reliable, and efficient Software."
+	accumulator := 0
+
+	for _, some := range strings.Split(exampleString, " ") {
+		var test = fmt.Sprintf("%c", some[0])
+
+		if strings.ToLower(test) != test {
+			accumulator += 1
+		}
+	}
+
+	fmt.Println(accumulator)
+}
+
+// func NumbersInTheString() {
+// 	example := "a10 10 20b 20 30c30 30 dd"
+
+// 	for _, some := range strings.Split(example, " ") {
+// 		if
+// 	}
+// }
 
 func CalcMoney(input []int) {
 	sum := 0
