@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
 func main() {
 	// var arr = []int{5, 5, 10, 10}
 	// CalcMoney(arr)
-	NumberOfWordsInUpperCase()
+	NumbersInTheString()
 }
 
 func NumberOfWordsInUpperCase() {
@@ -16,9 +17,9 @@ func NumberOfWordsInUpperCase() {
 	accumulator := 0
 
 	for _, some := range strings.Split(exampleString, " ") {
-		var test = fmt.Sprintf("%c", some[0])
+		var firstLetter = fmt.Sprintf("%c", some[0])
 
-		if strings.ToLower(test) != test {
+		if strings.ToLower(firstLetter) != firstLetter {
 			accumulator += 1
 		}
 	}
@@ -26,13 +27,17 @@ func NumberOfWordsInUpperCase() {
 	fmt.Println(accumulator)
 }
 
-// func NumbersInTheString() {
-// 	example := "a10 10 20b 20 30c30 30 dd"
+func NumbersInTheString() {
+	example := "a10 10 20b 20 30c30 30 dd 50"
 
-// 	for _, some := range strings.Split(example, " ") {
-// 		if
-// 	}
-// }
+	for _, some := range strings.Split(example, " ") {
+		number, err := strconv.Atoi(some)
+
+		if err == nil {
+			fmt.Printf("%d ", number)
+		}
+	}
+}
 
 func CalcMoney(input []int) {
 	sum := 0
