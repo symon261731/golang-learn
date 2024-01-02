@@ -2,183 +2,58 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
+	"os"
+	"time"
 )
 
 func main() {
-	// var arr = []int{5, 5, 10, 10}
-	// CalcMoney(arr)
-	NumbersInTheString()
+	WorkWithFiles()
 }
 
-func NumberOfWordsInUpperCase() {
-	exampleString := "Go is an Open source programming Language that makes it Easy to build simple, reliable, and efficient Software."
-	accumulator := 0
-
-	for _, some := range strings.Split(exampleString, " ") {
-		var firstLetter = fmt.Sprintf("%c", some[0])
-
-		if strings.ToLower(firstLetter) != firstLetter {
-			accumulator += 1
-		}
-	}
-
-	fmt.Println(accumulator)
-}
-
-func NumbersInTheString() {
-	example := "a10 10 20b 20 30c30 30 dd 50"
-
-	for _, some := range strings.Split(example, " ") {
-		number, err := strconv.Atoi(some)
-
-		if err == nil {
-			fmt.Printf("%d ", number)
-		}
-	}
-}
-
-func CalcMoney(input []int) {
-	sum := 0
-
-	for _, value := range input {
-
-		switch value {
-		case 5:
-			sum += value
-		case 10:
-			sum += 10
-			sum -= 5
-			if sum < 0 {
-				fmt.Print(false)
-				return
-			}
-			sum += 5
-		case 20:
-			sum += 20
-			sum -= 15
-			if sum < 0 {
-				fmt.Print(false)
-				return
-			}
-			sum += 5
-		}
-
-	}
-
-	fmt.Print(true)
-}
-
-func IdentifyTimeOfSeazon() {
-	var month string
-
-	months := map[string]int{
-		"январь":   1,
-		"февраль":  2,
-		"март":     3,
-		"апрель":   4,
-		"май":      5,
-		"июнь":     6,
-		"июль":     7,
-		"август":   8,
-		"сентябрь": 9,
-		"октябрь":  10,
-		"ноябрь":   11,
-		"декабрь":  12,
-	}
-
-	fmt.Print("Введите месяц: ")
-	fmt.Scan(&month)
-
-	resultOfInput := months[strings.ToLower(month)]
-
-	if resultOfInput == 0 {
-		fmt.Println("Неверный формат данных")
-		return
-	}
-
-	switch resultOfInput {
-
-	case 1:
-		fmt.Println("Зима")
-	case 2:
-		fmt.Println("Зима")
-	case 3:
-		fmt.Println("Весна")
-	case 4:
-		fmt.Println("Весна")
-	case 5:
-		fmt.Println("Весна")
-	case 6:
-		fmt.Println("Лето")
-	case 7:
-		fmt.Println("Лето")
-	case 8:
-		fmt.Println("Лето")
-	case 9:
-		fmt.Println("Осень")
-	case 10:
-		fmt.Println("Осень")
-	case 11:
-		fmt.Println("Осень")
-	case 12:
-		fmt.Println("Зима")
-	}
-
-}
-
-func ShowWeek() {
+func WorkWithFiles() {
 
 	var input string
 
-	weekDays := map[string]string{
-		"пн": "понедельник вторник среда четверг пятница",
-		"вт": "вторник среда четверг пятница",
-		"ср": "среда четверг пятница",
-		"чт": "четверг пятница",
-		"пт": "пятница",
-	}
+	for i := 1; input != "exit"; i++ {
+		fmt.Print("Введите пожалуйста деятельность: ")
+		fmt.Scan(&input)
 
-	fmt.Print("Введите пожалуйста день недели в сокращенной форме: ")
-	fmt.Scan(&input)
+		currentDate := time.Now().Day()
+		currentMonth := time.Now().Month()
+		currentYear := time.Now().Year()
+		currentHour := time.Now().Hour()
+		currentMinute := time.Now().Minute()
+		currentSecond := time.Now().Second()
 
-	var resultOfInput = strings.ToLower(input)
+		file, err := os.OpenFile("./workWithFile", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
 
-	switch resultOfInput {
-	case "пн":
-		fmt.Println(weekDays["пн"])
-	case "вт":
-		fmt.Println(weekDays["вт"])
-	case "ср":
-		fmt.Println(weekDays["ср"])
-	case "чт":
-		fmt.Println(weekDays["чт"])
-	case "пт":
-		fmt.Println(weekDays["пт"])
-	default:
-		fmt.Println("Неверный формат данных")
-		return
-	}
-}
-
-func CalcGroupsOfStudents() {
-	var n, k, studentIndex int
-
-	fmt.Println("Введите пожалуйста сколько студентов, групп, порядковый номер студента: ")
-	fmt.Scan(&n, &k, &studentIndex)
-
-	groupNum := studentIndex % k
-	studentsInOneGroup := n / k
-
-	for i := 1; i <= k; i++ {
-		if groupNum == 0 {
-			groupNum = k
+		if err != nil {
+			fmt.Print("Error while create file")
+			os.Exit(1)
 		}
-		if studentIndex <= studentsInOneGroup*i {
-			fmt.Printf("студент находиться в %d группе", i)
+		defer file.Close()
+
+		formatString := fmt.Sprintf(
+			"№%d %d-%d-%d %d:%d:%d %s \n",
+			i,
+			currentYear,
+			currentMonth,
+			currentDate,
+			currentHour,
+			currentMinute,
+			currentSecond,
+			input,
+		)
+
+		_, err = file.WriteString(formatString)
+
+		if err != nil {
+			fmt.Print("Error")
+			os.Exit(1)
 		}
+
 	}
 
 	return
+
 }

@@ -1,3 +1,124 @@
+func ShowWeek() {
+
+	var input string
+
+	weekDays := map[string]string{
+		"пн": "понедельник вторник среда четверг пятница",
+		"вт": "вторник среда четверг пятница",
+		"ср": "среда четверг пятница",
+		"чт": "четверг пятница",
+		"пт": "пятница",
+	}
+
+	fmt.Print("Введите пожалуйста день недели в сокращенной форме: ")
+	fmt.Scan(&input)
+
+	var resultOfInput = strings.ToLower(input)
+
+	switch resultOfInput {
+	case "пн":
+		fmt.Println(weekDays["пн"])
+	case "вт":
+		fmt.Println(weekDays["вт"])
+	case "ср":
+		fmt.Println(weekDays["ср"])
+	case "чт":
+		fmt.Println(weekDays["чт"])
+	case "пт":
+		fmt.Println(weekDays["пт"])
+	default:
+		fmt.Println("Неверный формат данных")
+		return
+	}
+}
+
+
+func IdentifyTimeOfSeazon() {
+	var month string
+
+	months := map[string]int{
+		"январь":   1,
+		"февраль":  2,
+		"март":     3,
+		"апрель":   4,
+		"май":      5,
+		"июнь":     6,
+		"июль":     7,
+		"август":   8,
+		"сентябрь": 9,
+		"октябрь":  10,
+		"ноябрь":   11,
+		"декабрь":  12,
+	}
+
+	fmt.Print("Введите месяц: ")
+	fmt.Scan(&month)
+
+	resultOfInput := months[strings.ToLower(month)]
+
+	if resultOfInput == 0 {
+		fmt.Println("Неверный формат данных")
+		return
+	}
+
+	switch resultOfInput {
+
+	case 1:
+		fmt.Println("Зима")
+	case 2:
+		fmt.Println("Зима")
+	case 3:
+		fmt.Println("Весна")
+	case 4:
+		fmt.Println("Весна")
+	case 5:
+		fmt.Println("Весна")
+	case 6:
+		fmt.Println("Лето")
+	case 7:
+		fmt.Println("Лето")
+	case 8:
+		fmt.Println("Лето")
+	case 9:
+		fmt.Println("Осень")
+	case 10:
+		fmt.Println("Осень")
+	case 11:
+		fmt.Println("Осень")
+	case 12:
+		fmt.Println("Зима")
+	}
+
+}
+
+
+func NumberOfWordsInUpperCase() {
+	exampleString := "Go is an Open source programming Language that makes it Easy to build simple, reliable, and efficient Software."
+	accumulator := 0
+
+	for _, some := range strings.Split(exampleString, " ") {
+		var firstLetter = fmt.Sprintf("%c", some[0])
+
+		if strings.ToLower(firstLetter) != firstLetter {
+			accumulator += 1
+		}
+	}
+
+	fmt.Println(accumulator)
+}
+
+func NumbersInTheString() {
+	example := "a10 10 20b 20 30c30 30 dd 50"
+
+	for _, some := range strings.Split(example, " ") {
+		number, err := strconv.Atoi(some)
+
+		if err == nil {
+			fmt.Printf("%d ", number)
+		}
+	}
+}
+
 func RandomGame() {
 
 	rand.Seed(time.Now().Unix())
