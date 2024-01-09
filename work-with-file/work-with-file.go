@@ -55,8 +55,6 @@ func ReadAndAddInfoFile() {
 
 	}
 
-	return
-
 }
 
 func TakeInfoFromFile() {
@@ -74,6 +72,33 @@ func TakeInfoFromFile() {
 	}
 
 	defer file.Close()
+
+	buf, err := io.ReadAll(file)
+
+	if err != nil {
+		fmt.Print("error")
+	}
+
+	fmt.Print(string(buf))
+
+}
+
+func MakeAndReadOnlyReadFile() {
+
+	file, err := os.OpenFile("./onlyReadFile", os.O_RDONLY|os.O_CREATE, 0666)
+
+	if err != nil {
+		fmt.Print("somethingWrong")
+	}
+
+	defer file.Close()
+
+	// _, writeStringErr := file.WriteString("hello there \n")
+
+	// if writeStringErr != nil {
+	// 	fmt.Println("something wrong with write string into the file")
+	// 	return
+	// }
 
 	buf, err := io.ReadAll(file)
 
