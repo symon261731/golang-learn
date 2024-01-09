@@ -1,3 +1,95 @@
+package doneexercise
+
+import (
+	"fmt"
+	"math"
+	"math/rand"
+	"strconv"
+	"strings"
+	"time"
+)
+
+func Lift() {
+	floors := 24
+
+	var floorOfFirstPerson,
+		floorOfSecondPerson,
+		floorOfThirdPerson int
+
+	fmt.Print("На каком этаже находится первый человек? ")
+	fmt.Scan(&floorOfFirstPerson)
+	fmt.Print("На каком этаже находится второй человек? ")
+	fmt.Scan(&floorOfSecondPerson)
+	fmt.Print("На каком этаже находится третий человек? ")
+	fmt.Scan(&floorOfThirdPerson)
+
+	if floorOfFirstPerson <= 1 || floorOfSecondPerson <= 1 || floorOfThirdPerson <= 1 {
+		fmt.Println("Человек должен находиться выше первого этаже")
+		return
+	}
+	if floorOfFirstPerson > floors || floorOfSecondPerson > floors || floorOfThirdPerson > floors {
+		fmt.Println("Человек не должен находиться выше 24 этажа")
+		return
+	}
+
+	isTakeFirstPerson := false
+	isTakeSecondPerson := false
+	isTakeTHirdPerson := false
+
+	direction := "up"
+
+	numberOfFloor := 1
+	numberOfPassengers := 0
+	totalPassengersOnFirstFloor := 0
+
+	for {
+		if direction == "up" {
+			fmt.Printf("номер этажа %d \n", numberOfFloor)
+			numberOfFloor += 1
+
+			if numberOfFloor == floors+1 {
+				direction = "down"
+				continue
+			}
+
+			continue
+		}
+
+		if direction == "down" {
+			numberOfFloor -= 1
+
+			//условия для подбора пассажиров
+			if floorOfFirstPerson == numberOfFloor && isTakeFirstPerson == false && numberOfPassengers != 2 {
+				isTakeFirstPerson = true
+				numberOfPassengers += 1
+			}
+			if floorOfSecondPerson == numberOfFloor && isTakeSecondPerson == false && numberOfPassengers != 2 {
+				isTakeSecondPerson = true
+				numberOfPassengers += 1
+			}
+			if floorOfThirdPerson == numberOfFloor && isTakeTHirdPerson == false && numberOfPassengers != 2 {
+				isTakeTHirdPerson = true
+				numberOfPassengers += 1
+			}
+
+			fmt.Printf("номер этажа %d \n", numberOfFloor)
+
+		}
+
+		if numberOfFloor == 1 {
+			totalPassengersOnFirstFloor += numberOfPassengers
+			numberOfPassengers = 0
+			direction = "up"
+		}
+
+		if totalPassengersOnFirstFloor == 3 {
+			break
+		}
+	}
+
+	fmt.Print("Пассажиры доставлены")
+}
+
 func ShowWeek() {
 
 	var input string
@@ -31,7 +123,6 @@ func ShowWeek() {
 		return
 	}
 }
-
 
 func IdentifyTimeOfSeazon() {
 	var month string
@@ -90,7 +181,6 @@ func IdentifyTimeOfSeazon() {
 	}
 
 }
-
 
 func NumberOfWordsInUpperCase() {
 	exampleString := "Go is an Open source programming Language that makes it Easy to build simple, reliable, and efficient Software."
@@ -155,7 +245,6 @@ func RandomGame() {
 	fmt.Println("попытки окончены")
 
 }
-
 
 func FillingBuskets() {
 	var firstBusket, secondBusket, thirdBusket uint
@@ -248,7 +337,6 @@ func SumOfTwoNumberByOne() {
 	fmt.Print(sum)
 }
 
-
 func TenHundreadThousand() {
 	a := 0
 	b := 0
@@ -273,10 +361,9 @@ func TenHundreadThousand() {
 	fmt.Print(a, b, c)
 }
 
-
 func CalcMoneyWithoutChange() {
-	
-	var totalMoney, currencyFirst, currencySecond, currencyThird int 
+
+	var totalMoney, currencyFirst, currencySecond, currencyThird int
 	var minVal, midVal, maxVal,
 		count1, count2, count3 int
 
@@ -357,7 +444,6 @@ func CalcMoneyWithoutChange() {
 		count1, "монет номиналом", minVal, "руб.")
 
 }
-
 
 func LuckyTicket() {
 	var ticket int

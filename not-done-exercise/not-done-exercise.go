@@ -1,3 +1,7 @@
+package notdoneexercise
+
+import "fmt"
+
 func CalcMoney(input []int) {
 	sum := 0
 
