@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -693,4 +694,126 @@ func CipherCaesar() {
 		}
 		fmt.Printf("%c", letter)
 	}
+}
+
+func ModifySpaces(s, mode string) string {
+
+	var result string
+
+	switch mode {
+	case "dash":
+		result = strings.ReplaceAll(s, " ", "-")
+	case "underscore":
+		result = strings.ReplaceAll(s, " ", "_")
+	default:
+		result = strings.ReplaceAll(s, " ", "*")
+	}
+
+	return result
+
+}
+
+func SafeWrite(nums [5]int, i, val int) [5]int {
+
+	var result = [5]int{}
+	result[0] = nums[0]
+	result[1] = nums[1]
+	result[2] = nums[2]
+	result[3] = nums[3]
+	result[4] = nums[4]
+
+	if i < 5 && i >= 0 {
+		result[i] = val
+	}
+
+	return result
+
+}
+
+func Remove(nums []int, i int) []int {
+
+	var result []int
+
+	if i > len(nums) || i < 0 {
+		return nums
+	}
+
+	for x := 0; x < len(nums); x++ {
+		if x != i {
+			result = append(result, nums[x])
+		}
+	}
+
+	return result
+}
+
+func IntsCopy(src []int, maxLen int) []int {
+
+	var result []int
+
+	if maxLen <= 0 {
+		return []int{}
+	}
+
+	if maxLen > len(src) {
+		result = make([]int, len(src))
+		copy(result, src)
+
+		return result
+	}
+
+	result = make([]int, maxLen)
+
+	copy(result, src)
+
+	return result
+
+}
+
+func UniqueSortedUserIDsCorrectSolution(userIDs []int64) []int64 {
+
+	if len(userIDs) < 2 {
+		return userIDs
+	}
+
+	sort.SliceStable(userIDs, func(i, j int) bool { return userIDs[i] < userIDs[j] })
+	uniqPointer := 0
+	for i := 1; i < len(userIDs); i++ {
+		if userIDs[uniqPointer] != userIDs[i] {
+			uniqPointer++
+			userIDs[uniqPointer] = userIDs[i]
+		}
+	}
+
+	return userIDs[:uniqPointer+1]
+
+}
+
+func UniqueSortedUserIDsMyOpinion(userIDs []int64) []int64 {
+	if len(userIDs) < 2 {
+		return userIDs
+	}
+
+	sort.Slice(userIDs, func(i, j int) bool { return userIDs[i] < userIDs[j] })
+
+	var result []int64
+
+	for i := 0; i < len(userIDs); i++ {
+		duplicate := false
+
+		for y := 0; y < len(result); y++ {
+			if userIDs[i] == result[y] {
+				duplicate = true
+			}
+		}
+		if !duplicate {
+			result = append(result, userIDs[i])
+		}
+	}
+
+	if len(result) == 0 {
+		return []int64{}
+	}
+
+	return result
 }
