@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode"
 )
 
 func Lift() {
@@ -837,4 +838,70 @@ func UniqueUserIDs(userIDs []int64) []int64 {
 	}
 
 	return result
+}
+
+func MostPopularWord(words []string) string {
+
+	var hash = map[string]int{}
+
+	for _, str := range words {
+
+		if hash[str] == 0 {
+			hash[str] = 1
+		} else {
+			hash[str] = hash[str] + 1
+		}
+	}
+
+	var maxNumber int = 0
+	var popularName string
+	for word, value := range hash {
+		if value > maxNumber {
+			maxNumber = value
+			popularName = word
+		}
+	}
+
+	fmt.Println(popularName)
+	fmt.Println(hash)
+
+	return popularName
+}
+
+func ShiftASCII(s string, step int) string {
+
+	hashOfEntryString := []byte(s)
+	var hashOfNewStringInBytes []byte
+
+	for _, val := range hashOfEntryString {
+		hashOfNewStringInBytes = append(hashOfNewStringInBytes, val+byte(step))
+	}
+
+	return string(hashOfNewStringInBytes)
+}
+
+func IsASCII(s string) bool {
+	MaxASCII := '\u007F'
+
+	for _, run := range s {
+
+		if run > MaxASCII {
+			return false
+		}
+	}
+
+	return true
+}
+
+func LatinLetters(s string) string {
+
+	result := strings.Builder{}
+
+	for _, val := range s {
+		if unicode.Is(unicode.Latin, val) {
+			result.WriteRune(val)
+		}
+	}
+
+	return result.String()
 }

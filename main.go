@@ -1,7 +1,9 @@
 package main
 
-import inprogressexercises "main.go/in-progress-exercises"
+import (
+	doneexercise "main.go/done-exercise"
+)
 
 func main() {
-	inprogressexercises.CombinationOfBrackets(3)
+	doneexercise.LatinLetters("hello, дима")
 }

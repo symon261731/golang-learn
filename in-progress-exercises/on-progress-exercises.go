@@ -1,6 +1,8 @@
 package inprogressexercises
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func CombinationOfBrackets(numberOfPares int) {
 	result := []string{}
