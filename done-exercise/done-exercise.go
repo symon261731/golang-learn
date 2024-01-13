@@ -817,3 +817,24 @@ func UniqueSortedUserIDsMyOpinion(userIDs []int64) []int64 {
 
 	return result
 }
+
+func UniqueUserIDs(userIDs []int64) []int64 {
+	var result []int64
+
+	hash := make(map[int64]struct{})
+
+	for _, elem := range userIDs {
+		_, ok := hash[elem]
+
+		if !ok {
+			result = append(result, elem)
+			hash[elem] = struct{}{}
+		}
+	}
+
+	if len(result) == 0 {
+		return []int64{}
+	}
+
+	return result
+}

@@ -10,15 +10,4 @@ func CombinationOfBrackets(numberOfPares int) {
 		return
 	}
 
-	if numberOfPares == 1 {
-		result = []string{"()"}
-		fmt.Print(result)
-		return
-	}
-
-	if numberOfPares > 1 {
-		fmt.Print("Ну тут что то будет")
-		return
-	}
-
 }
