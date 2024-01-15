@@ -1,9 +1,7 @@
 package main
 
-import (
-	doneexercise "main.go/done-exercise"
-)
+import inprogressexercises "main.go/in-progress-exercises"
 
 func main() {
-	doneexercise.LatinLetters("hello, дима")
+	inprogressexercises.MergeNumberLists([]int{1, 2, 3}, []int{4, 6, 74})
 }

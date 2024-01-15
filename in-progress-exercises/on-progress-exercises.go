@@ -13,3 +13,13 @@ func CombinationOfBrackets(numberOfPares int) {
 	}
 
 }
+
+func MergeNumberLists(numberList ...[]int) []int {
+	var result []int
+
+	for _, value := range numberList {
+		result = append(result, value...)
+	}
+
+	return result
+}

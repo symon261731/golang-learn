@@ -61,15 +61,15 @@ func Lift() {
 			numberOfFloor -= 1
 
 			//условия для подбора пассажиров
-			if floorOfFirstPerson == numberOfFloor && isTakeFirstPerson == false && numberOfPassengers != 2 {
+			if floorOfFirstPerson == numberOfFloor && !isTakeFirstPerson && numberOfPassengers != 2 {
 				isTakeFirstPerson = true
 				numberOfPassengers += 1
 			}
-			if floorOfSecondPerson == numberOfFloor && isTakeSecondPerson == false && numberOfPassengers != 2 {
+			if floorOfSecondPerson == numberOfFloor && !isTakeSecondPerson && numberOfPassengers != 2 {
 				isTakeSecondPerson = true
 				numberOfPassengers += 1
 			}
-			if floorOfThirdPerson == numberOfFloor && isTakeTHirdPerson == false && numberOfPassengers != 2 {
+			if floorOfThirdPerson == numberOfFloor && !isTakeTHirdPerson && numberOfPassengers != 2 {
 				isTakeTHirdPerson = true
 				numberOfPassengers += 1
 			}
