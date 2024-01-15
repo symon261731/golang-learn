@@ -905,3 +905,13 @@ func LatinLetters(s string) string {
 
 	return result.String()
 }
+
+func MergeNumberLists(numberList ...[]int) []int {
+	var result []int
+
+	for _, value := range numberList {
+		result = append(result, value...)
+	}
+
+	return result
+}
