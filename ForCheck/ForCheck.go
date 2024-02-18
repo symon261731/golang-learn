@@ -92,6 +92,7 @@ func CalcSumOfOddAndEvenNumberInArray() ([]int, error) {
 	return array, nil
 }
 
+// 6
 func ReverseArray(arr []int) []int {
 	return processReverseArray(arr)
 }
