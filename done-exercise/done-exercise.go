@@ -915,3 +915,32 @@ func MergeNumberLists(numberList ...[]int) []int {
 
 	return result
 }
+
+func GetValuesByLink(first *int, second *int) {
+	var valueFirst = *first
+	var valueSecond = *second
+
+	*first = valueSecond
+	*second = valueFirst
+
+}
+
+func CalcSumOfOddNumbersInRow(firstNum int, secondNum int) {
+	sum := 0
+
+	if firstNum < secondNum {
+		for i := firstNum; i <= secondNum; i++ {
+			if i%2 == 0 {
+				sum += i
+			}
+		}
+	} else {
+		for i := secondNum; i <= firstNum; i++ {
+			if i%2 == 0 {
+				sum += i
+			}
+		}
+	}
+
+	fmt.Print(sum)
+}
