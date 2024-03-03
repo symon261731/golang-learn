@@ -4,6 +4,25 @@ import (
 	"fmt"
 )
 
+func MultiplyMatrix(firstMatrix [3][5]int, secondMatrix [5][4]int) [3][4]int {
+
+	var result = [3][4]int{
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+	}
+
+	for i := 0; i < len(firstMatrix); i += 1 {
+		for j := 0; j < len(secondMatrix)-1; j += 1 {
+			for k := 0; k < len(secondMatrix); k += 1 {
+				result[i][j] += firstMatrix[i][k] * secondMatrix[k][j]
+			}
+		}
+	}
+
+	return result
+}
+
 func SpreadOfTwoArrays(first []int, second []int) []int {
 	var result []int
 
