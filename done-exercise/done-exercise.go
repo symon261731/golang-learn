@@ -11,6 +11,71 @@ import (
 	"unicode"
 )
 
+// 1
+func IsOddNumber(num int) bool {
+	return num%2 == 0
+}
+
+// 2
+func CalcCoordinates() (int, int) {
+	var x, y int
+	fmt.Println("Введите пожалуйста значение X")
+	fmt.Scan(&x)
+	fmt.Println("Введите пожалуйста значение Y")
+	fmt.Scan(&y)
+
+	return prepareCoordinates(x, y)
+}
+
+// Вроде будет недоступна вне пакета
+func prepareCoordinates(x int, y int) (int, int) {
+	var resultX = 2*x + 10
+	var resultY = -3*y - 5
+
+	return resultX, resultY
+}
+
+// 3
+func CalcAddAndMultiplyResult(num int) (int, int) {
+	return multiplyNumber(num), addNumber(num)
+}
+
+func multiplyNumber(num int) int {
+	var multiplyNum int
+	fmt.Println("На сколько умножить")
+	fmt.Scan(&multiplyNum)
+	return multiplyNum * num
+}
+
+func addNumber(number int) int {
+	var addNumber int
+	fmt.Println("Сколько прибавить")
+	fmt.Scan(&addNumber)
+	return addNumber + number
+}
+
+// 4
+var globalVariable = 5
+
+func CalcResultOfSumFunctions() int {
+	var callFirstFunction = addFirstFunction(globalVariable)
+	var callSecondFunction = addSecondFunction(callFirstFunction)
+	var callThirdFunction = addThirdFunction(callSecondFunction)
+
+	return callThirdFunction
+}
+
+func addFirstFunction(num int) int {
+	return num + 5
+}
+
+func addSecondFunction(num int) int {
+	return num + 6
+}
+func addThirdFunction(num int) int {
+	return num + 8
+}
+
 func Lift() {
 	floors := 24
 
