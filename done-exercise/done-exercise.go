@@ -11,6 +11,31 @@ import (
 	"unicode"
 )
 
+//var arrayForSort = []int{1, 2, 4, 6, 8, 9, 5, 3}
+//var arrayForSort = []int{1, 2, 3, 4, 5, 6, 7}
+
+func BubbleSort(arrayForSort []int) []int {
+	var initialArray = arrayForSort
+
+	for i := 0; i < len(initialArray)-1; i += 1 {
+		isAlreadySorted := false
+
+		for j := 0; j < len(initialArray)-1; j += 1 {
+			if initialArray[j] > initialArray[j+1] {
+				initialArray[j+1], initialArray[j] = initialArray[j], initialArray[j+1]
+				isAlreadySorted = true
+			}
+		}
+		//fmt.Println(testArray)
+		if !isAlreadySorted {
+			break
+		}
+
+	}
+
+	return initialArray
+}
+
 // 1
 func IsOddNumber(num int) bool {
 	return num%2 == 0
@@ -63,6 +88,43 @@ func CalcResultOfSumFunctions() int {
 	var callThirdFunction = addThirdFunction(callSecondFunction)
 
 	return callThirdFunction
+}
+
+// 5
+func CalcSumOfOddAndEvenNumberInArray() (int, int) {
+	var array = make([]int, 10)
+
+	for i := 0; i < 10; i++ {
+
+		fmt.Printf("Введите число для индекса %d \n", i)
+		fmt.Scan(&array[i])
+	}
+	var sumOfOdd = 0
+	var sumOfEven = 0
+
+	for _, v := range array {
+		if v%2 == 0 {
+			sumOfOdd += 1
+		} else {
+			sumOfEven += 1
+		}
+	}
+
+	return sumOfOdd, sumOfEven
+}
+
+// 6
+func ReverseArray(arr []int) []int {
+	return processReverseArray(arr)
+}
+
+func processReverseArray(arr []int) []int {
+	var result = make([]int, len(arr))
+
+	for i := 0; i < len(arr); i++ {
+		result[i] = arr[len(arr)-i-1]
+	}
+	return result
 }
 
 func addFirstFunction(num int) int {

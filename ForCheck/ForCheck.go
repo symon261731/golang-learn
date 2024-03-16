@@ -2,6 +2,9 @@ package ForCheck
 
 import (
 	"fmt"
+	"math/rand"
+	"sort"
+	"time"
 )
 
 func MultiplyMatrix(firstMatrix [3][5]int, secondMatrix [5][4]int) [3][4]int {
@@ -24,44 +27,10 @@ func MultiplyMatrix(firstMatrix [3][5]int, secondMatrix [5][4]int) [3][4]int {
 }
 
 func SpreadOfTwoArrays(first []int, second []int) []int {
-	var result []int
-
-	for _, v := range first {
-		result = append(result, v)
-	}
-	for _, v := range second {
-		result = append(result, v)
-	}
+	var result []int = append(first, second...)
+	sort.Ints(result)
 
 	return result
-}
-
-//var arrayForSort = []int{1, 2, 4, 6, 8, 9, 5, 3}
-//var arrayForSort = []int{1, 2, 3, 4, 5, 6, 7}
-
-func BubbleSort(arrayForSort []int) []int {
-	var initialArray = arrayForSort
-
-	for i := 0; i < len(initialArray)-1; i += 1 {
-		isAlreadySorted := false
-
-		for j := 0; j < len(initialArray)-1; j += 1 {
-			if initialArray[j] > initialArray[j+1] {
-				var valWithI = initialArray[j]
-				var valNext = initialArray[j+1]
-				initialArray[j+1] = valWithI
-				initialArray[j] = valNext
-				isAlreadySorted = true
-			}
-		}
-		//fmt.Println(testArray)
-		if !isAlreadySorted {
-			break
-		}
-
-	}
-
-	return initialArray
 }
 
 // [
@@ -75,53 +44,53 @@ func BubbleSort(arrayForSort []int) []int {
 // -
 // a3b2c1 - a1b3c2 - a2b1c3
 
-//	var matrix = [3][3]int{
-//		{1, -2, 3},
-//		{4, 0, 6},
-//		{-7, 8, 9},
-//	}
+//var matrix = [3][3]int{
+//	{1, -2, 3},
+//	{4, 0, 6},
+//	{-7, 8, 9},
+//}
 
 func CalcCheatMatrixDeterminant(matrix [3][3]int) int {
 
-	var resultFirst = matrix[0][0]*matrix[1][1]*matrix[2][2] + matrix[2][0]*matrix[0][1]*matrix[1][2] + matrix[1][0]*matrix[2][1]*matrix[0][2]
-	var resultSecond = -matrix[2][2]*matrix[1][1]*matrix[0][0] - matrix[0][0]*matrix[2][1]*matrix[1][2] - matrix[1][0]*matrix[0][1]*matrix[2][2]
+	var resultFirst = (matrix[0][0] * matrix[1][1] * matrix[2][2]) + (matrix[2][0] * matrix[0][1] * matrix[1][2]) + (matrix[1][0] * matrix[2][1] * matrix[0][2])
+	var resultSecond = -(matrix[2][2] * matrix[1][1] * matrix[0][0]) - (matrix[0][0] * matrix[2][1] * matrix[1][2]) - (matrix[1][0] * matrix[0][1] * matrix[2][2])
 
 	return resultFirst + resultSecond
 }
 
-// 5
-func CalcSumOfOddAndEvenNumberInArray() (int, int) {
-	var array = make([]int, 10)
+func CalcNumberInArray() ([]int, int) {
+	rand.Seed(time.Now().UnixNano())
+	var arr []int
 
-	for i := 0; i < 10; i++ {
+	var findNum int
+	var sum = 0
+	fmt.Print("Введите число количество которых хотите найти в массиве ")
+	fmt.Scan(&findNum)
 
-		fmt.Printf("Введите число для индекса %d \n", i)
-		fmt.Scan(&array[i])
+	for i := 0; i < rand.Intn(50); i += 1 {
+		arr = append(arr, rand.Intn(50))
 	}
-	var sumOfOdd = 0
-	var sumOfEven = 0
 
-	for _, v := range array {
-		if v%2 == 0 {
-			sumOfOdd += 1
-		} else {
-			sumOfEven += 1
+	for _, v := range arr {
+		if v == findNum {
+			sum++
 		}
+
 	}
 
-	return sumOfOdd, sumOfEven
+	return arr, sum
+
 }
 
-// 6
-func ReverseArray(arr []int) []int {
-	return processReverseArray(arr)
-}
+func CalcFormula() any {
+	var x int16
+	var y uint8
+	var z float32
 
-func processReverseArray(arr []int) []int {
-	var result = make([]int, len(arr))
+	fmt.Println("X Y Z")
+	fmt.Scan(&x, &y, &z)
 
-	for i := 0; i < len(arr); i++ {
-		result[i] = arr[len(arr)-i-1]
-	}
+	var result float32 = 2*float32(x) + float32(y*y) - 3/z
+
 	return result
 }
