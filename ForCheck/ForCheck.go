@@ -7,6 +7,12 @@ import (
 	"time"
 )
 
+//var matrix = [3][3]int{
+//	{1, 2, 3},
+//	{4, 5, 6},
+//	{7, 8, 9},
+//}
+
 func CalcCheatMatrixDeterminant(matrix [3][3]int) int {
 
 	mainDiagonal := matrix[0][0] * matrix[1][1] * matrix[2][2]
