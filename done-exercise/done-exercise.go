@@ -11,6 +11,25 @@ import (
 	"unicode"
 )
 
+func MultiplyMatrix(firstMatrix [3][5]int, secondMatrix [5][4]int) [3][4]int {
+
+	var result = [3][4]int{
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+	}
+
+	for i := 0; i < len(firstMatrix); i += 1 {
+		for j := 0; j < len(secondMatrix)-1; j += 1 {
+			for k := 0; k < len(secondMatrix); k += 1 {
+				result[i][j] += firstMatrix[i][k] * secondMatrix[k][j]
+			}
+		}
+	}
+
+	return result
+}
+
 //var arrayForSort = []int{1, 2, 4, 6, 8, 9, 5, 3}
 //var arrayForSort = []int{1, 2, 3, 4, 5, 6, 7}
 
