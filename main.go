@@ -3,16 +3,11 @@ package main
 import "main.go/ForCheck"
 
 func main() {
-	ForCheck.CallbackFunction(func(x int, y int) int {
-		return x + y
-	})
+	//var arr = []int{1, 2, 3, 4, 5, 6, 7, 8}
+	sentences := []string{"Hello world", "Hello Skillbox", "Привет Мир", "Привет Skillbox"}
 
-	ForCheck.CallbackFunction(func(x int, y int) int {
-		return x - y
-	})
+	chars := []rune{'H', 'E', 'l', 'П', 'М'}
 
-	ForCheck.CallbackFunction(func(x int, y int) int {
-		return x * y
-	})
+	ForCheck.FindNumberOfSymbols(sentences, chars)
 
 }

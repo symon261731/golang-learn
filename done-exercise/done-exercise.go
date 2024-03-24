@@ -11,6 +11,42 @@ import (
 	"unicode"
 )
 
+func CalcFormula() any {
+	var x int16
+	var y uint8
+	var z float32
+
+	fmt.Println("X Y Z")
+	fmt.Scan(&x, &y, &z)
+
+	var result float32 = 2*float32(x) + float32(y*y) - 3/z
+
+	return result
+}
+
+func CallbackFunction(cb func(someX int, someY int) int) {
+
+	defer cb(10, 15)
+}
+
+func CalcCheatMatrixDeterminant(matrix [3][3]int) int {
+
+	mainDiagonal := matrix[0][0] * matrix[1][1] * matrix[2][2]
+	alternateDiagonal := matrix[0][2] * matrix[1][1] * matrix[2][0]
+
+	leftSide := mainDiagonal + (matrix[0][1] * matrix[1][2] * matrix[2][0]) + (matrix[1][0] * matrix[2][1] * matrix[0][2])
+	rightSide := alternateDiagonal + (matrix[2][1] * matrix[1][2] * matrix[0][0]) + (matrix[1][0] * matrix[0][1] * matrix[2][2])
+
+	return leftSide - rightSide
+}
+
+func SpreadOfTwoArrays(first []int, second []int) []int {
+	var result = append(first, second...)
+	sort.Ints(result)
+
+	return result
+}
+
 func MultiplyMatrix(firstMatrix [3][5]int, secondMatrix [5][4]int) [3][4]int {
 
 	var result = [3][4]int{
