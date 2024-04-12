@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	doneexercise "main.go/done-exercise"
+	"main.go/ForCheck"
 )
 
 func main() {
@@ -12,19 +12,19 @@ func main() {
 	//chars := []rune{'H', 'E', 'l', 'П', 'М'}
 	//
 	//ForCheck.FindNumberOfSymbols(sentences, chars)
-	array := []int{1, 5, 11, 4, 54, 2, 3, 5, 6, 8}
-	anon := func(array *[]int) {
-
-		var sortedArray = doneexercise.BubbleSort(*array)
-		var result []int
-		for i := len(sortedArray) - 1; i >= 0; i-- {
-			result = append(result, sortedArray[i])
-		}
-
-		*array = result
-	}
-
-	anon(&array)
-	fmt.Println(array)
+	//array := []int{1, 5, 11, 4, 54, 2, 3, 5, 6, 8}
+	//anon := func(array *[]int) {
+	//
+	//	var sortedArray = doneexercise.BubbleSort(*array)
+	//	var result []int
+	//	for i := len(sortedArray) - 1; i >= 0; i-- {
+	//		result = append(result, sortedArray[i])
+	//	}
+	//
+	//	*array = result
+	//}
+	//
+	//anon(&array)
+	fmt.Println(ForCheck.CalcNumberInArray())
 
 }

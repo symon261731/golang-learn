@@ -15,27 +15,28 @@ import (
 //}
 
 // TODO переделать
-func CalcNumberInArray() ([]int, int) {
+func CalcNumberInArray() []int {
 	rand.Seed(time.Now().UnixNano())
 	var arr []int
+	var lengthOfArray int
+	fmt.Print("Введите длинну массива: ")
+	fmt.Scan(&lengthOfArray)
 
 	var findNum int
-	var sum = 0
-	fmt.Print("Введите число количество которых хотите найти в массиве ")
+	fmt.Print("Введите число количество которых хотите найти в массиве: ")
 	fmt.Scan(&findNum)
 
-	for i := 0; i < rand.Intn(50); i += 1 {
-		arr = append(arr, rand.Intn(50))
+	for i := 0; i < lengthOfArray; i += 1 {
+		arr = append(arr, rand.Intn(lengthOfArray))
 	}
 
-	for _, v := range arr {
-		if v == findNum {
-			sum++
-		}
+	var indexOfFindNumber = FindIndexMethod(arr, findNum)
 
+	if indexOfFindNumber == -1 {
+		return arr
 	}
 
-	return arr, sum
+	return arr[indexOfFindNumber:]
 
 }
 
