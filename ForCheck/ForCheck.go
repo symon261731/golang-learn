@@ -14,7 +14,6 @@ import (
 //	{7, 8, 9},
 //}
 
-// TODO переделать
 func CalcNumberInArray() []int {
 	rand.Seed(time.Now().UnixNano())
 	var arr []int
@@ -120,7 +119,7 @@ func mistakeFindNumberOfSymbolsAdapter(runeMap map[rune]int) map[string]int {
 
 // Задание 4.2 Поиск символов в нескольких строках
 
-func FindNumberOfSymbolsAdapter(runeMap map[rune]int) [][2]string {
+func findNumberOfSymbolsAdapter(runeMap map[rune]int) [][2]string {
 	var result [][2]string
 	for key, val := range runeMap {
 
@@ -147,7 +146,7 @@ func FindNumberOfSymbols(sentences []string, chars []rune) [][2]string {
 			}
 		}
 
-		fmt.Println(FindNumberOfSymbolsAdapter(mapOfRune))
+		fmt.Println(findNumberOfSymbolsAdapter(mapOfRune))
 
 	}
 	return result

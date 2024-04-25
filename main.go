@@ -1,10 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"main.go/ForCheck"
-)
-
 func main() {
 	//var arr = []int{1, 2, 3, 4, 5, 6, 7, 8}
 	//sentences := []string{"Hello world", "Hello Skillbox", "Привет Мир", "Привет Skillbox"}
@@ -25,6 +20,4 @@ func main() {
 	//}
 	//
 	//anon(&array)
-	fmt.Println(ForCheck.CalcNumberInArray())
-
 }
