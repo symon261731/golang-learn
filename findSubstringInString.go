@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+//go run findSubstringInString.go -str="как у тебя дела" -substr=тебя
+
 func main() {
 	fullString := flag.String("str", "", "fullString")
 	subStr := flag.String("substr", "", "sub string")
