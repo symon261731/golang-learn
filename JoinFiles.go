@@ -17,8 +17,11 @@ func main() {
 		return
 	}
 
-	for _, b := range info {
-		buf.WriteByte(b)
+	writeDataInBuffer(&buf, info)
+
+	if len(argumentsAfterGoCommand) == 1 {
+		fmt.Println(buf.String())
+		return
 	}
 
 	infoSecond, err := os.ReadFile(argumentsAfterGoCommand[1])
@@ -28,18 +31,26 @@ func main() {
 		return
 	}
 
-	for _, b := range infoSecond {
-		buf.WriteByte(b)
+	writeDataInBuffer(&buf, infoSecond)
+
+	if len(argumentsAfterGoCommand) != 3 {
+		fmt.Println(buf.String())
+		return
 	}
 
 	resultFile, err := os.Create(argumentsAfterGoCommand[2])
 	defer resultFile.Close()
 
 	if err != nil {
-		fmt.Println(buf.String())
+		fmt.Println("error")
 		return
 	}
 
 	resultFile.WriteString(buf.String())
+}
 
+func writeDataInBuffer(buffer *bytes.Buffer, fileInfo []byte) {
+	for _, b := range fileInfo {
+		buffer.WriteByte(b)
+	}
 }
