@@ -1,21 +1,15 @@
-package main
+package student
 
 import (
 	"bufio"
 	"fmt"
+	"main/pkg/storage"
 	"os"
 	"strconv"
 	"strings"
 )
 
-type StudentStorage struct {
-	name  string
-	age   int
-	grade int
-}
-
-func main() {
-	var studentStorage []StudentStorage
+func AppAlgorithm(StudentStorageVariable *[]storage.StudentStorage) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	fmt.Println("Введите данные студента (имя возраст оценка), затем нажмите Enter. Для завершения введите EOF (ctrl + d).")
@@ -42,10 +36,12 @@ func main() {
 			continue
 		}
 
-		studentStorage = append(studentStorage, StudentStorage{name: studentInfo[0], age: age, grade: grade})
+		AddStudent(StudentStorageVariable, storage.StudentStorage{Name: studentInfo[0], Age: age, Grade: grade})
 	}
 
-	for _, v := range studentStorage {
-		fmt.Println(v.name)
-	}
+	storage.GetAllStudents(StudentStorageVariable)
+}
+
+func AddStudent(storage *[]storage.StudentStorage, info storage.StudentStorage) {
+	*storage = append(*storage, info)
 }
