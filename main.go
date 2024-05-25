@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	studentStorageVariable := make([]storage.StudentStorage, 0)
+	var studentStorage = storage.CreateStorage()
 
-	student.AppAlgorithm(&studentStorageVariable)
+	student.AppAlgorithm(&studentStorage)
 }

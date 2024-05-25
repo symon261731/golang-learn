@@ -8,6 +8,11 @@ type StudentStorage struct {
 	Grade int
 }
 
+func CreateStorage() []StudentStorage {
+	studentStorageVariable := make([]StudentStorage, 0)
+	return studentStorageVariable
+}
+
 func GetAllStudents(studentStorage *[]StudentStorage) {
 	fmt.Println("")
 	for _, v := range *studentStorage {

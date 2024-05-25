@@ -14,32 +14,32 @@ func AppAlgorithm(StudentStorageVariable *[]storage.StudentStorage) {
 
 	fmt.Println("Введите данные студента (имя возраст оценка), затем нажмите Enter. Для завершения введите EOF (ctrl + d).")
 	for scanner.Scan() {
-
-		text := scanner.Text()
-
-		if text == "exit" {
-			break
-		}
-
-		studentInfo := strings.Split(text, " ")
-		age, err := strconv.Atoi(studentInfo[1])
-
-		if err != nil {
-			fmt.Println("Неверный формат данных")
-			continue
-		}
-
-		grade, err := strconv.Atoi(studentInfo[2])
-
-		if err != nil {
-			fmt.Println("Неверный формат данных")
-			continue
-		}
-
-		AddStudent(StudentStorageVariable, storage.StudentStorage{Name: studentInfo[0], Age: age, Grade: grade})
+		studentInfo := ReadStudentInfo(scanner)
+		AddStudent(StudentStorageVariable, studentInfo)
 	}
 
 	storage.GetAllStudents(StudentStorageVariable)
+}
+
+func ReadStudentInfo(scanner *bufio.Scanner) storage.StudentStorage {
+	text := scanner.Text()
+
+	studentInfo := strings.Split(text, " ")
+	age, err := strconv.Atoi(studentInfo[1])
+
+	if err != nil {
+		fmt.Println("Неверный формат данных")
+	}
+
+	grade, err := strconv.Atoi(studentInfo[2])
+
+	if err != nil {
+		fmt.Println("Неверный формат данных")
+	}
+
+	newStudent := storage.StudentStorage{Age: age, Grade: grade, Name: studentInfo[0]}
+
+	return newStudent
 }
 
 func AddStudent(storage *[]storage.StudentStorage, info storage.StudentStorage) {
