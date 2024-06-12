@@ -1,12 +1,8 @@
 package main
 
-import (
-	"main/pkg/storage"
-	"main/pkg/student"
-)
+import "main/pkg/conveyor"
 
 func main() {
-	var studentStorage = storage.CreateStorage()
 
-	student.AppAlgorithm(&studentStorage)
+	conveyor.AppAlgorithm()
 }
