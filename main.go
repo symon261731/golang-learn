@@ -1,8 +1,7 @@
 package main
 
-import "main/pkg/conveyor"
+import "main/pkg"
 
 func main() {
-
-	conveyor.AppAlgorithm()
+	pkg.SquareNumbersWithShutdown()
 }
